@@ -34,7 +34,7 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 @Mod(MysteriesMod.MODID)
 public class MysteriesMod {
     // Define mod id in a common place for everything to reference
-    public static final String MODID = "examplemod";
+    public static final String MODID = "mysteriesmod";
     // Directly reference a slf4j logger
     public static final Logger LOGGER = LogUtils.getLogger();
 
