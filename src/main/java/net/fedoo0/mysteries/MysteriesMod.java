@@ -1,6 +1,7 @@
 package net.fedoo0.mysteries;
 
 import net.fedoo0.mysteries.block.ModBlocks;
+import net.fedoo0.mysteries.item.CustomCreativeModTabs;
 import net.fedoo0.mysteries.item.ModItems;
 import org.slf4j.Logger;
 
@@ -39,6 +40,7 @@ public class MysteriesMod {
         NeoForge.EVENT_BUS.register(this);
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
+        CustomCreativeModTabs.register(modEventBus);
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);
 
@@ -61,12 +63,7 @@ public class MysteriesMod {
 
 
     private void addCreative(BuildCreativeModeTabContentsEvent event) {
-        if (event.getTabKey() == CreativeModeTabs.TOOLS_AND_UTILITIES) {
-            event.accept(ModItems.DAGGER);
-        }
-        if (event.getTabKey() == CreativeModeTabs.BUILDING_BLOCKS) {
-            event.accept(ModBlocks.MAGIC_CAULDRON);
-        }
+
     }
 
     // You can use SubscribeEvent and let the Event Bus discover methods to call
