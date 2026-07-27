@@ -11,11 +11,10 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
-import javax.swing.*;
 import java.util.function.Supplier;
 
 public class ModBlocks {
-    private static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(MysteriesMod.MODID);
+    private static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(MysteriesMod.MOD_ID);
 
     public static final DeferredBlock<Block> MAGIC_CAULDRON = registerBlock("magic_cauldron",
            () -> new Block(BlockBehaviour.Properties.of().strength(4f).sound(SoundType.CHAIN)));
