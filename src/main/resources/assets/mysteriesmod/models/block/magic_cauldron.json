@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:blocl/cube_all",
+  "textures": {
+    "all": "mysteriesmod:block/magic_cauldron"
+  }
+}

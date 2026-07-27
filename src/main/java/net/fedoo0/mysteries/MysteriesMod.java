@@ -1,6 +1,7 @@
 package net.fedoo0.mysteries;
 
-import net.fedoo0.mysteries.items.ModItems;
+import net.fedoo0.mysteries.block.ModBlocks;
+import net.fedoo0.mysteries.item.ModItems;
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
@@ -37,6 +38,7 @@ public class MysteriesMod {
         // Do not add this line if there are no @SubscribeEvent-annotated functions in this class, like onServerStarting() below.
         NeoForge.EVENT_BUS.register(this);
         ModItems.register(modEventBus);
+        ModBlocks.register(modEventBus);
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);
 
@@ -59,8 +61,11 @@ public class MysteriesMod {
 
 
     private void addCreative(BuildCreativeModeTabContentsEvent event) {
+        if (event.getTabKey() == CreativeModeTabs.TOOLS_AND_UTILITIES) {
+            event.accept(ModItems.DAGGER);
+        }
         if (event.getTabKey() == CreativeModeTabs.BUILDING_BLOCKS) {
-            event.accept(ModItems.RECIPE);
+            event.accept(ModBlocks.MAGIC_CAULDRON);
         }
     }
 
