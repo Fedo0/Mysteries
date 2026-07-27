@@ -1,4 +1,6 @@
 {
   "item.mysteriesmod.dagger": "Silver Dagger",
-  "block.mysteriesmod.magic_cauldron": "Magic Cauldron"
+  "block.mysteriesmod.magic_cauldron": "Magic Cauldron",
+
+  "creativetab.mysteriesmod.mysteries_items": "Mysteries"
 }
