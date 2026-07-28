@@ -1,6 +1,7 @@
 package net.fedoo0.mysteries.item;
 
 import net.fedoo0.mysteries.MysteriesMod;
+import net.fedoo0.mysteries.item.custom.Dagger;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.SwordItem;
 import net.minecraft.world.item.Tiers;
@@ -13,7 +14,7 @@ public class ModItems {
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(MysteriesMod.MOD_ID);
 
     public  static final DeferredItem<Item> DAGGER = ITEMS.register("dagger",
-            () -> new SwordItem(Tiers.IRON,
+            () -> new Dagger(
                     new Item.Properties()
                             .stacksTo(1)
                             .durability(150)
