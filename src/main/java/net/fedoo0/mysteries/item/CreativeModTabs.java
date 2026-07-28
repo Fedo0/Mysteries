@@ -36,7 +36,6 @@ public class CreativeModTabs {
                     .title(Component.translatable("creativetab.mysteriesmod.ingredients"))
                     .displayItems((parameters, output) -> {
 
-                        // Перебираем все записи и добавляем их в output
                         Ingredients.ITEMS.getEntries().forEach(entry -> {
                             output.accept(entry.get());
                         });

@@ -1,23 +1,38 @@
-MIT License
-
-Copyright (c) 2023 NeoForged project
 Copyright (c) 2026 Fedoo0
+All rights reserved.
 
+----------------------------------------------------------------------
+CUSTOM LICENSE & TERMS OF SERVICE
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+1. INTELLECTUAL PROPERTY NOTICE
+This mod is a non-commercial, fan-made modification based on the "Lord of the Mysteries" (诡秘之主) universe created by Cuttlefish That Loves Diving (爱潜水的乌贼) and owned by China Literature (Qidian). The author of this mod does not claim ownership over any intellectual property, lore, characters, names, or settings from the "Lord of the Mysteries" universe. This project is created for entertainment purposes only under fair use guidelines for fan-made content.
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+2. OWNERSHIP OF THE MOD CODE AND ASSETS
+While the lore belongs to the respective copyright holders, the specific original programming code, configuration files, original textures, 3D models, and sound assets created for this mod are the property of the mod author.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+3. NON-COMMERCIAL USE ONLY
+You are strictly prohibited from using this mod, its code, or its assets for any commercial purposes. This includes, but is not limited to:
+- Selling the mod or charging for access to it.
+- Locking specific mod features, pathways, or items behind a paywall (including Patreon, VIP tiers, or server stores).
+- Hosting the mod files on websites with forced commercial advertising links (e.g., AdFly).
+- Using this mod on commercial Minecraft servers that sell gameplay advantages.
+
+4. ATTRIBUTION & RE-UPLOAD RESTRICTIONS
+You may not steal, copy, or redistribute this mod’s assets or code and claim them as your own. If you share screenshots, videos, or showcase the mod, you must provide proper credit to the author and a link to the official mod page.
+Re-uploading the mod file (.jar) to third-party websites without the author's explicit written permission is strictly prohibited.
+
+5. MODPACK PERMISSION
+You are officially permitted to include this mod in any free-to-play modpacks hosted on legitimate platforms (such as CurseForge or Modrinth), provided that:
+- The modpack itself is completely free and non-commercial.
+- The mod is not modified or tampered with inside the pack.
+- Proper credit is given to the author in the modpack's description.
+
+6. NO DERIVATIVES AND ALTERATIONS
+You may not modify, decompile, adapt, translate, or create derivative works from this mod's code or assets for public distribution without the author's explicit prior consent. Unofficial ports to other Minecraft versions or modding loaders (e.g., Forge to Fabric) are prohibited.
+
+7. DISCLAIMER OF LIABILITY
+This mod is provided "as is", without warranty of any kind. The author is not responsible for any damage to your computer, server, or Minecraft worlds caused by installing this mod.
+
+----------------------------------------------------------------------
+8. THIRD-PARTY NOTICES
+This mod is built using the NeoForge Mod Development Kit (MDK). The core build scripts, workspace configurations, and build-tool setup files remain subject to the original NeoForge MDK license terms (MIT). The custom restrictions outlined in Sections 2 through 6 of this document apply strictly to the unique, original source code, assets, textures, and models created by the author of this mod.
