@@ -15,9 +15,9 @@ import java.util.function.Supplier;
 
 public class ModBlocks {
     private static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(MysteriesMod.MOD_ID);
-
+// Cauldron later to be replaced with a custom entity
     public static final DeferredBlock<Block> MAGIC_CAULDRON = registerBlock("magic_cauldron",
-           () -> new Block(BlockBehaviour.Properties.of().strength(4f).sound(SoundType.CHAIN)));
+           () -> new Block(BlockBehaviour.Properties.of().strength(2f).sound(SoundType.STONE)));
 
 
     private static <T extends Block> DeferredBlock<T> registerBlock(String name, Supplier<T> block) {

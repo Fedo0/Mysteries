@@ -11,7 +11,7 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 
 import java.util.function.Supplier;
 
-public class CustomCreativeModTabs {
+public class CreativeModTabs {
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TAB = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, MysteriesMod.MOD_ID);
 
     public static final Supplier<CreativeModeTab> MYSTERIES_TAB = CREATIVE_MODE_TAB.register("mysteries_tab",

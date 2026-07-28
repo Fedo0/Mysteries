@@ -1,7 +1,7 @@
 package net.fedoo0.mysteries;
 
 import net.fedoo0.mysteries.block.ModBlocks;
-import net.fedoo0.mysteries.item.CustomCreativeModTabs;
+import net.fedoo0.mysteries.item.CreativeModTabs;
 import net.fedoo0.mysteries.item.ModItems;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
@@ -28,7 +28,7 @@ public class MysteriesMod {
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
 
-        CustomCreativeModTabs.register(modEventBus);
+        CreativeModTabs.register(modEventBus);
 
         modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
     }
