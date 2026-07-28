@@ -1,5 +1,6 @@
 package net.fedoo0.mysteries;
 
+import net.fedoo0.mysteries.beyonder.pathways.main.fool.Ingredients;
 import net.fedoo0.mysteries.block.ModBlocks;
 import net.fedoo0.mysteries.item.CreativeModTabs;
 import net.fedoo0.mysteries.item.ModItems;
@@ -27,6 +28,7 @@ public class MysteriesMod {
 
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
+        Ingredients.register(modEventBus);
 
         CreativeModTabs.register(modEventBus);
 
