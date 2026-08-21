@@ -1,5 +1,8 @@
 package net.fedoo0.mysteries.beyonder.pathways;
 
+import java.util.Map;
+
+
 public class BeyonderData {
     private final String pathway;
     private int sequence;
@@ -11,7 +14,7 @@ public class BeyonderData {
     public BeyonderData(String pathway, int sequence) {
         this.pathway = pathway;
         this.sequence = sequence;
-        this.maxSpirituality = maxSpirituality;
+        this.maxSpirituality = getMaxSpirituality(pathway, sequence);
         this.spirituality = maxSpirituality;
         this.digestion = 0.0;
         this.madness = 0.0;
@@ -48,7 +51,43 @@ public class BeyonderData {
     public boolean isMad() {return this.madness>=1;}
 
 
-    public void modifyMadness(int amount) {
+    public void modifyMadness(double amount) {
         this.madness = Math.clamp(this.madness + amount, 0, 1.0);
     }
+
+
+    //Spirit lookup table 
+    public static final Map<String, int[]> spiritMap = Map.ofEntries(
+        Map.entry("fool", new int[]{10000, 5000, 2500, 1200, 600, 300, 150, 80, 40, 20}),
+        Map.entry("error", new int[]{10000, 5000, 2500, 1200, 600, 300, 150, 80, 40, 20}),
+        Map.entry("door", new int[]{10000, 5000, 2500, 1200, 600, 300, 150, 80, 40, 20}),
+        Map.entry("darkness", new int[]{10000, 5000, 2500, 1200, 600, 300, 150, 80, 40, 20}),
+        Map.entry("death", new int[]{10000, 5000, 2500, 1200, 600, 300, 150, 80, 40, 20}),
+        Map.entry("twilight", new int[]{10000, 5000, 2500, 1200, 600, 300, 150, 80, 40, 20}),
+        Map.entry("visionary", new int[]{10000, 5000, 2500, 1200, 600, 300, 150, 80, 40, 20}),
+        Map.entry("sun", new int[]{10000, 5000, 2500, 1200, 600, 300, 150, 80, 40, 20}),
+        Map.entry("tyrant", new int[]{10000, 5000, 2500, 1200, 600, 300, 150, 80, 40, 20}),
+        Map.entry("white_tower", new int[]{10000, 5000, 2500, 1200, 600, 300, 150, 80, 40, 20}),
+        Map.entry("hanged man", new int[]{10000, 5000, 2500, 1200, 600, 300, 150, 80, 40, 20}),
+        Map.entry("justiciar", new int[]{10000, 5000, 2500, 1200, 600, 300, 150, 80, 40, 20}),
+        Map.entry("demoness", new int[]{10000, 5000, 2500, 1200, 600, 300, 150, 80, 40, 20}),
+        Map.entry("chained", new int[]{10000, 5000, 2500, 1200, 600, 300, 150, 80, 40, 20}),
+        Map.entry("abyss", new int[]{10000, 5000, 2500, 1200, 600, 300, 150, 80, 40, 20}),
+        Map.entry("red priest", new int[]{10000, 5000, 2500, 1200, 600, 300, 150, 80, 40, 20}),
+        Map.entry("devil", new int[]{10000, 5000, 2500, 1200, 600, 300, 150, 80, 40, 20}),
+        Map.entry("mother", new int[]{10000, 5000, 2500, 1200, 600, 300, 150, 80, 40, 20}),
+        Map.entry("moon", new int[]{10000, 5000, 2500, 1200, 600, 300, 150, 80, 40, 20}),
+        Map.entry("wheel_of_fortune", new int[]{10000, 5000, 2500, 1200, 600, 300, 150, 80, 40, 20}),
+        Map.entry("paragon", new int[]{10000, 5000, 2500, 1200, 600, 300, 150, 80, 40, 20}),
+        Map.entry("hermit", new int[]{10000, 5000, 2500, 1200, 600, 300, 150, 80, 40, 20})
+    );
+    // add an acting modifier 
+    private static int getMaxSpirituality(String pathway, int sequence) {
+        int[] table = spiritMap.get(pathway);
+        return table[sequence];
+    }
+
+    
+
+
 }
