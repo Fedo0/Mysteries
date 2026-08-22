@@ -5,6 +5,7 @@ import net.fedoo0.mysteries.block.ModBlocks;
 import net.fedoo0.mysteries.item.CreativeModTabs;
 import net.fedoo0.mysteries.item.ModItems;
 import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.neoforge.event.RegisterCommandsEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
 import org.slf4j.Logger;
 
@@ -23,7 +24,7 @@ public class MysteriesMod {
 
     // constructor
     public MysteriesMod(IEventBus modEventBus, ModContainer modContainer) {
-        ;
+
         NeoForge.EVENT_BUS.register(this);
 
         ModItems.register(modEventBus);
@@ -38,5 +39,8 @@ public class MysteriesMod {
     public void onServerStarting(ServerStartingEvent event) {
 
     }
-
+    @SubscribeEvent
+    public void onRegisterCommands(RegisterCommandsEvent event) {
+        DebugCommands.register(event.getDispatcher());
+    }
 }

@@ -1,4 +1,4 @@
-package net.fedoo0.mysteries.beyonder.pathways;
+package net.fedoo0.mysteries.beyonder;
 
 import java.util.Map;
 
@@ -26,7 +26,10 @@ public class BeyonderData {
 
     // Sequence functions
     public int getSequence() { return this.sequence; }
-    public void setSequence(int sequence) { this.sequence = sequence; }
+    public void setSequence(int sequence) { this.sequence = sequence;
+        this.maxSpirituality = getMaxSpirituality(pathway, sequence);
+        this.spirituality = maxSpirituality;
+    }
 
     //Spirituality functions
     public int getSpirituality() { return this.spirituality; }
@@ -87,7 +90,7 @@ public class BeyonderData {
         return table[sequence];
     }
 
-    
+    public void modifyDigestion(double amount) {this.digestion = Math.clamp(this.digestion + amount, 0, 1.0);}
 
 
 }
