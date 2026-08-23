@@ -1,9 +1,12 @@
 package net.fedoo0.mysteries.beyonder;
 
+import net.fedoo0.mysteries.beyonder.characteristic.Characteristic;
+import net.fedoo0.mysteries.beyonder.characteristic.CharasteristicRegistry;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.saveddata.SavedData;
 import org.jetbrains.annotations.NotNull;
 
@@ -17,17 +20,28 @@ public class Beyonder extends SavedData {
     private final ConcurrentHashMap<UUID, BeyonderData> beyonderRegistry = new ConcurrentHashMap<>();
 
 
-    public void registerBeyonder(UUID uuid,String pathway, int sequence) {
+    public void registerBeyonder(UUID uuid, String pathway, int sequence, ServerLevel level) {
         BeyonderData beyonderData = new BeyonderData(pathway, sequence);
         beyonderRegistry.put(uuid, beyonderData);
         setDirty();
+        Characteristic characteristic = new Characteristic(uuid, pathway, sequence);
+        CharasteristicRegistry.get(level).registerCharacteristic(characteristic);
+
     }
 
     public boolean isBeyonder(UUID uuid) { return beyonderRegistry.containsKey(uuid);}
 
     public BeyonderData getBeyonder(UUID uuid) {return beyonderRegistry.get(uuid);}
 
-    public void removeBeyonder(UUID uuid) { beyonderRegistry.remove(uuid); setDirty();}
+    public void removeBeyonder(UUID uuid, ServerLevel level) {
+        beyonderRegistry.remove(uuid);
+        setDirty();
+        for (Characteristic characteristic : CharasteristicRegistry.create().getCharacteristics(uuid)) {
+            characteristic.setOwner(null);
+            CharasteristicRegistry.get(level).setDirty();
+        }
+
+    }
 
     public ConcurrentHashMap<UUID, BeyonderData> getBeyonderRegistry() {
         return beyonderRegistry;

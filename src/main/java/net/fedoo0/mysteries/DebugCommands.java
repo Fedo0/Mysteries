@@ -78,7 +78,7 @@ public class DebugCommands {
         String pathway = StringArgumentType.getString(ctx, "pathway");
         int sequence = IntegerArgumentType.getInteger(ctx, "sequence");
 
-        Beyonder.get(ctx.getSource().getServer().overworld()).registerBeyonder(target.getUUID(), pathway, sequence);
+        Beyonder.get(ctx.getSource().getServer().overworld()).registerBeyonder(target.getUUID(), pathway, sequence, ctx.getSource().getServer().overworld());
 
         ctx.getSource().sendSuccess(() -> Component.literal(
                 "Set " + target.getName().getString() + " as Beyonder: pathway=" + pathway + ", sequence=" + sequence
@@ -118,7 +118,7 @@ public class DebugCommands {
             return 0;
         }
 
-        Beyonder.get(ctx.getSource().getServer().overworld()).removeBeyonder(target.getUUID());
+        Beyonder.get(ctx.getSource().getServer().overworld()).removeBeyonder(target.getUUID(), ctx.getSource().getServer().overworld());
         ctx.getSource().sendSuccess(() -> Component.literal(
                 "Removed Beyonder status from " + target.getName().getString()
         ), true);

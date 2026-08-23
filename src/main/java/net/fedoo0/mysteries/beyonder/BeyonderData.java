@@ -1,6 +1,11 @@
 package net.fedoo0.mysteries.beyonder;
 
+import net.fedoo0.mysteries.beyonder.characteristic.CharasteristicRegistry;
+
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
+import java.util.UUID;
 
 
 public class BeyonderData {
