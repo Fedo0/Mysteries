@@ -2,6 +2,7 @@ package net.fedoo0.mysteries;
 
 import net.fedoo0.mysteries.beyonder.Beyonder;
 import net.fedoo0.mysteries.beyonder.abilities.PassiveAbilityTicker;
+import net.fedoo0.mysteries.beyonder.pathways.main.death.abilities.DeathAbilities;
 import net.fedoo0.mysteries.beyonder.pathways.main.fool.Ingredients;
 import net.fedoo0.mysteries.block.ModBlocks;
 import net.fedoo0.mysteries.item.CreativeModTabs;
@@ -33,6 +34,9 @@ public class MysteriesMod {
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
         Ingredients.register(modEventBus);
+
+        DeathAbilities.register();
+
 
         CreativeModTabs.register(modEventBus);
 
