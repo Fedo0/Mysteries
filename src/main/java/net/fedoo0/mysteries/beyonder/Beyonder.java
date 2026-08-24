@@ -6,7 +6,6 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.world.level.Level;
 import net.minecraft.world.level.saveddata.SavedData;
 import org.jetbrains.annotations.NotNull;
 
@@ -21,6 +20,7 @@ public class Beyonder extends SavedData {
 
 
     public void registerBeyonder(UUID uuid, String pathway, int sequence, ServerLevel level) {
+
         BeyonderData beyonderData = new BeyonderData(pathway, sequence);
         beyonderRegistry.put(uuid, beyonderData);
         setDirty();
@@ -45,6 +45,20 @@ public class Beyonder extends SavedData {
 
     public ConcurrentHashMap<UUID, BeyonderData> getBeyonderRegistry() {
         return beyonderRegistry;
+    }
+
+    public void advance(UUID uuid) {
+        BeyonderData beyonderData = beyonderRegistry.get(uuid);
+        if (!(beyonderData == null)) {
+            // check the potion's sequence whenever they are done
+            // check ritual completion
+            // maybe add a process of advancing for higher sequences that can be disrupted. Will do this sometime later
+            // I wonder if anyone ever reads the comments, besides me, of course
+            // If you do dm me on discord or smth @.fedor.
+            // also remove register beyonder or make it so it doesnt create infinite chars. blah blah blah
+            beyonderData.setSequence(beyonderData.getSequence()-1);
+            setDirty();
+        }
     }
 
 

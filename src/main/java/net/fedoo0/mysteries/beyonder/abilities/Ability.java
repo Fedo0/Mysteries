@@ -15,7 +15,8 @@ public abstract class Ability {
     }
 
     public boolean canCast(BeyonderData beyonderData) {
-        return beyonderData.getPathway().equals(pathway) && beyonderData.getSequence() <= requiredSequence && beyonderData.getSpirituality() >= spiritualityCost;
+        return tickCooldown == 0 && beyonderData.getPathway().equals(pathway) && beyonderData.getSequence() <= requiredSequence && beyonderData.getSpirituality() >= spiritualityCost;
+        // might do a check for characteristics instead, still not sure
     }
 
     public void cast(AbilityContext context) {
