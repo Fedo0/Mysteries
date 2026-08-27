@@ -1,6 +1,6 @@
 package net.fedoo0.mysteries.beyonder.characteristic;
 
-import net.fedoo0.mysteries.beyonder.Beyonder;
+import net.fedoo0.mysteries.beyonder.pathway.Pathway;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
@@ -8,10 +8,9 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.saveddata.SavedData;
 import org.jetbrains.annotations.NotNull;
 
-import javax.annotation.Nullable;
 import java.util.*;
 
-public final class CharasteristicRegistry extends SavedData {
+public final class CharacteristicRegistry extends SavedData {
     private static final Map<UUID, Characteristic> characteristicRegistry= new HashMap<>();
 
     public void registerCharacteristic(Characteristic characteristic) {
@@ -29,7 +28,7 @@ public final class CharasteristicRegistry extends SavedData {
         return characteristicSet;
     }
 
-    public int getCharacteristicAmount(String pathway, int sequence) {
+    public int getCharacteristicAmount(Pathway pathway, int sequence) {
         int i = 0;
         for (Characteristic characteristic : characteristicRegistry.values()) {
             if (characteristic.getPathway().equals(pathway) && characteristic.getSequence() == sequence) {
@@ -44,10 +43,10 @@ public final class CharasteristicRegistry extends SavedData {
 
 
 
-    public static CharasteristicRegistry create() {return new CharasteristicRegistry();}
+    public static CharacteristicRegistry create() {return new CharacteristicRegistry();}
 
-    public static CharasteristicRegistry load(CompoundTag tag, HolderLookup.Provider provider) {
-        CharasteristicRegistry registry = CharasteristicRegistry.create();
+    public static CharacteristicRegistry load(CompoundTag tag, HolderLookup.Provider provider) {
+        CharacteristicRegistry registry = CharacteristicRegistry.create();
         ListTag list = tag.getList("characteristics", CompoundTag.TAG_COMPOUND);
         for (int i=0; i<list.size(); i++) {
             CompoundTag entry = list.getCompound(i);
@@ -55,7 +54,7 @@ public final class CharasteristicRegistry extends SavedData {
             UUID owner = entry.hasUUID("owner")
                     ? entry.getUUID("owner")
                     :null;
-            String pathway = entry.getString("pathway");
+            Pathway pathway = Pathway.valueOf(entry.getString("pathway"));
             int sequence = entry.getInt("sequence");
 
             Characteristic characteristic = new Characteristic(id, owner, pathway, sequence);
@@ -73,7 +72,7 @@ public final class CharasteristicRegistry extends SavedData {
                 if (!(characteristic.getOwner() == null)) {
                     entry.putUUID("owner", characteristic.getOwner());
                 }
-                entry.putString("pathway", characteristic.getPathway());
+                entry.putString("pathway", characteristic.getPathway().toString());
                 entry.putInt("sequence", characteristic.getSequence());
                 list.add(entry);
         });
@@ -81,9 +80,9 @@ public final class CharasteristicRegistry extends SavedData {
         return tag;
     }
 
-    public static CharasteristicRegistry get(ServerLevel overworld) {
+    public static CharacteristicRegistry get(ServerLevel overworld) {
         return overworld.getDataStorage().computeIfAbsent(
-                new SavedData.Factory<>(CharasteristicRegistry::create, CharasteristicRegistry::load),
+                new SavedData.Factory<>(CharacteristicRegistry::create, CharacteristicRegistry::load),
                 "characteristic_data"
         );
     }

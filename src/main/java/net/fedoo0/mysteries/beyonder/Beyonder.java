@@ -1,11 +1,13 @@
 package net.fedoo0.mysteries.beyonder;
 
 import net.fedoo0.mysteries.beyonder.characteristic.Characteristic;
-import net.fedoo0.mysteries.beyonder.characteristic.CharasteristicRegistry;
+import net.fedoo0.mysteries.beyonder.characteristic.CharacteristicRegistry;
+import net.fedoo0.mysteries.beyonder.pathway.Pathway;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.saveddata.SavedData;
 import org.jetbrains.annotations.NotNull;
 
@@ -19,13 +21,13 @@ public class Beyonder extends SavedData {
     private final ConcurrentHashMap<UUID, BeyonderData> beyonderRegistry = new ConcurrentHashMap<>();
 
 
-    public void registerBeyonder(UUID uuid, String pathway, int sequence, ServerLevel level) {
+    public void registerBeyonder(UUID uuid, Pathway pathway, int sequence, ServerLevel level) {
 
         BeyonderData beyonderData = new BeyonderData(pathway, sequence);
         beyonderRegistry.put(uuid, beyonderData);
         setDirty();
         Characteristic characteristic = new Characteristic(uuid, pathway, sequence);
-        CharasteristicRegistry.get(level).registerCharacteristic(characteristic);
+        CharacteristicRegistry.get(level).registerCharacteristic(characteristic);
 
     }
 
@@ -36,9 +38,9 @@ public class Beyonder extends SavedData {
     public void removeBeyonder(UUID uuid, ServerLevel level) {
         beyonderRegistry.remove(uuid);
         setDirty();
-        for (Characteristic characteristic : CharasteristicRegistry.create().getCharacteristics(uuid)) {
+        for (Characteristic characteristic : CharacteristicRegistry.create().getCharacteristics(uuid)) {
             characteristic.setOwner(null);
-            CharasteristicRegistry.get(level).setDirty();
+            CharacteristicRegistry.get(level).setDirty();
         }
 
     }
@@ -62,7 +64,23 @@ public class Beyonder extends SavedData {
     }
 
 
+    public void drinkPotion(Pathway pathway, int sequence, LivingEntity player) {
+        BeyonderData beyonderData = beyonderRegistry.get(player.getUUID());
+        if (beyonderData == null) {
+            if (sequence == 9) {
+                registerBeyonder(player.getUUID(), pathway, sequence, player.getServer().overworld());
+            }
+            else {
+                // loose control or I dont know game design is hard genuinely dont remember what happens will come back to this later
+            }
+        }
+        else {
+            if (beyonderData.getPathway().equals(pathway) && beyonderData.getSequence() == sequence + 1) {
+                advance(player.getUUID()); // maybe do different pathways later, but then Ill have to write ability access tied to chars (
+            }
+        }
 
+    }
     // saving the registry
 
     public static Beyonder create() {
@@ -75,7 +93,7 @@ public class Beyonder extends SavedData {
         for (int i=0; i<list.size(); i++) {
             CompoundTag entry = list.getCompound(i);
             UUID uuid = entry.getUUID("uuid");
-            BeyonderData beyonderData = new BeyonderData(entry.getString("pathway"), entry.getInt("sequence"));
+            BeyonderData beyonderData = new BeyonderData(Pathway.valueOf(entry.getString("pathway")), entry.getInt("sequence"));
             beyonderData.modifyMadness(entry.getDouble("madness"));
             beyonderData.modifyDigestion(entry.getDouble("digestion"));
             beyonderData.modifySpirituality(entry.getInt("spirituality")-beyonderData.getSpirituality());
@@ -92,7 +110,7 @@ public class Beyonder extends SavedData {
         beyonderRegistry.forEach((uuid, beyonderData) -> {
             CompoundTag entry = new CompoundTag();
             entry.putUUID("uuid", uuid);
-            entry.putString("pathway", beyonderData.getPathway());
+            entry.putString("pathway", beyonderData.getPathway().toString());
             entry.putInt("sequence", beyonderData.getSequence());
             entry.putDouble("madness", beyonderData.getMadness());
             entry.putDouble("digestion", beyonderData.getDigestion());

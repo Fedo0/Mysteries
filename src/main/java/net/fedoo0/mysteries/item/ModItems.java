@@ -1,7 +1,11 @@
 package net.fedoo0.mysteries.item;
 
 import net.fedoo0.mysteries.MysteriesMod;
+import net.fedoo0.mysteries.beyonder.potion.BeyonderPotion;
 import net.fedoo0.mysteries.item.custom.Dagger;
+import net.minecraft.core.component.DataComponentType;
+import net.minecraft.core.component.DataComponents;
+import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.SwordItem;
 import net.minecraft.world.item.Tiers;
@@ -20,6 +24,21 @@ public class ModItems {
                             .durability(150)
                             .attributes(SwordItem.createAttributes(Tiers.IRON, 3.0f, -2.0f))
             ));
+
+    public static final DeferredItem<Item> BEYONDER_POTION = ITEMS.register("beyonder_potion",
+            () -> new BeyonderPotion(
+                    new Item.Properties()
+                            .component(
+                            DataComponents.FOOD, new FoodProperties.Builder()
+                            .nutrition(0)
+                            .saturationModifier(0.0F)
+                            .alwaysEdible()
+                            .build()
+                    )
+            )
+            );
+
+
 
 
     public static void register(IEventBus eventBus) {

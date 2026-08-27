@@ -2,8 +2,9 @@ package net.fedoo0.mysteries;
 
 import net.fedoo0.mysteries.beyonder.Beyonder;
 import net.fedoo0.mysteries.beyonder.abilities.PassiveAbilityTicker;
-import net.fedoo0.mysteries.beyonder.pathways.main.death.abilities.DeathAbilities;
-import net.fedoo0.mysteries.beyonder.pathways.main.fool.Ingredients;
+import net.fedoo0.mysteries.beyonder.pathway.main.death.abilities.DeathAbilities;
+import net.fedoo0.mysteries.beyonder.pathway.main.fool.Ingredients;
+import net.fedoo0.mysteries.beyonder.potion.BeyonderPotionDataComponent;
 import net.fedoo0.mysteries.block.ModBlocks;
 import net.fedoo0.mysteries.item.CreativeModTabs;
 import net.fedoo0.mysteries.item.ModItems;
@@ -36,7 +37,7 @@ public class MysteriesMod {
         Ingredients.register(modEventBus);
 
         DeathAbilities.register();
-
+        BeyonderPotionDataComponent.DATA_COMPONENTS.register(modEventBus);
 
         CreativeModTabs.register(modEventBus);
 

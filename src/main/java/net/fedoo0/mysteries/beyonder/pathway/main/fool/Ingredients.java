@@ -1,10 +1,7 @@
-package net.fedoo0.mysteries.beyonder.pathways.main.fool;
+package net.fedoo0.mysteries.beyonder.pathway.main.fool;
 import net.fedoo0.mysteries.MysteriesMod;
-import net.fedoo0.mysteries.item.custom.Dagger;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Rarity;
-import net.minecraft.world.item.SwordItem;
-import net.minecraft.world.item.Tiers;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;

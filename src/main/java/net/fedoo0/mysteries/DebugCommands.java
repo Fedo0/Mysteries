@@ -8,15 +8,23 @@ import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import net.fedoo0.mysteries.beyonder.Beyonder;
 import net.fedoo0.mysteries.beyonder.BeyonderData;
+import net.fedoo0.mysteries.beyonder.pathway.Pathway;
+import net.fedoo0.mysteries.beyonder.potion.BeyonderPotion;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
 import net.minecraft.commands.arguments.EntityArgument;
+import net.minecraft.commands.arguments.StringRepresentableArgument;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.item.ItemStack;
+import net.neoforged.neoforge.server.command.EnumArgument;
+
+
 
 import java.util.Map;
 import java.util.UUID;
 
+import static net.fedoo0.mysteries.beyonder.potion.BeyonderPotion.createBeyonderPotion;
 
 
 public class DebugCommands {
@@ -29,7 +37,7 @@ public class DebugCommands {
                         // /beyonderdebug set <player> <pathway> <sequence>
                         .then(Commands.literal("set")
                                 .then(Commands.argument("target", EntityArgument.player())
-                                        .then(Commands.argument("pathway", StringArgumentType.word())
+                                        .then(Commands.argument("pathway",EnumArgument.enumArgument(Pathway.class))
                                                 .then(Commands.argument("sequence", IntegerArgumentType.integer(0, 9))
                                                         .executes(DebugCommands::setBeyonder)))))
 
@@ -70,12 +78,19 @@ public class DebugCommands {
                                 .then(Commands.argument("target", EntityArgument.player())
                                         .then(Commands.argument("amount", DoubleArgumentType.doubleArg())
                                                 .executes(DebugCommands::modifyMadness))))
+
+                        // /beyonderdebug potion <pathway> <sequence>
+                        .then(Commands.literal("potion")
+                                .then(Commands.argument("target", EntityArgument.player())
+                                        .then(Commands.argument("pathway", EnumArgument.enumArgument(Pathway.class))
+                                            .then(Commands.argument("sequence", IntegerArgumentType.integer())
+                                                    .executes(DebugCommands::giveBeyonderPotion)))))
         );
     }
 
     private static int setBeyonder(CommandContext<CommandSourceStack> ctx) throws CommandSyntaxException {
         ServerPlayer target = EntityArgument.getPlayer(ctx, "target");
-        String pathway = StringArgumentType.getString(ctx, "pathway");
+        Pathway pathway = ctx.getArgument("pathway", Pathway.class);
         int sequence = IntegerArgumentType.getInteger(ctx, "sequence");
 
         Beyonder.get(ctx.getSource().getServer().overworld()).registerBeyonder(target.getUUID(), pathway, sequence, ctx.getSource().getServer().overworld());
@@ -213,5 +228,17 @@ public class DebugCommands {
 
         ctx.getSource().sendSuccess(() -> Component.literal(sb.toString()), false);
         return registry.size();
+    }
+
+
+    public static int giveBeyonderPotion(CommandContext<CommandSourceStack> ctx) throws CommandSyntaxException{
+        ServerPlayer target = EntityArgument.getPlayer(ctx, "target");
+        Pathway pathway = ctx.getArgument("pathway", Pathway.class);
+        int sequence = IntegerArgumentType.getInteger(ctx, "sequence");
+        ItemStack potion = createBeyonderPotion(pathway, sequence);
+
+        target.getInventory().add(potion);
+
+        return 1;
     }
 }

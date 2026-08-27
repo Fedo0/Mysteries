@@ -1,7 +1,7 @@
 package net.fedoo0.mysteries.item;
 
 import net.fedoo0.mysteries.MysteriesMod;
-import net.fedoo0.mysteries.beyonder.pathways.main.fool.Ingredients;
+import net.fedoo0.mysteries.beyonder.pathway.main.fool.Ingredients;
 import net.fedoo0.mysteries.block.ModBlocks;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
