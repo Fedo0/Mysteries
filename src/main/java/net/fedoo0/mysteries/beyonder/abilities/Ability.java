@@ -1,13 +1,14 @@
 package net.fedoo0.mysteries.beyonder.abilities;
 
 import net.fedoo0.mysteries.beyonder.BeyonderData;
+import net.fedoo0.mysteries.beyonder.pathway.Pathway;
 
 public abstract class Ability {
-    private final String pathway;
+    private final Pathway pathway;
     private final int requiredSequence;
     private final int spiritualityCost;
     private final int tickCooldown;
-    public Ability(String pathway, int requiredSequence, int spiritualityCost, int tickCooldown) {
+    public Ability(Pathway pathway, int requiredSequence, int spiritualityCost, int tickCooldown) {
         this.pathway = pathway;
         this.requiredSequence = requiredSequence;
         this.spiritualityCost = spiritualityCost;

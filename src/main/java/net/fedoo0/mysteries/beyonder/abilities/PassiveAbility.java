@@ -1,12 +1,13 @@
 package net.fedoo0.mysteries.beyonder.abilities;
 
 import net.fedoo0.mysteries.beyonder.BeyonderData;
+import net.fedoo0.mysteries.beyonder.pathway.Pathway;
 
 
 public abstract class PassiveAbility {
-    private final String pathway;
+    private final Pathway pathway;
     private final int requiredSequence;
-    public PassiveAbility(String pathway, int requiredSequence) {
+    public PassiveAbility(Pathway pathway, int requiredSequence) {
         this.pathway = pathway;
         this.requiredSequence = requiredSequence;
     }

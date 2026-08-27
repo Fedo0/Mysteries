@@ -9,11 +9,17 @@ public abstract class Ritual {
         this.gainedAttention = gainedAttention;
     }
 
-    public  boolean requirementsMet(RitualContext context) {
-        // заглушка
-        return true;
+    public abstract boolean requirementsMet(RitualContext context);
+
+    public abstract void execute(RitualContext ritualContext);
+
+    public void performRitual(RitualContext context) {
+        if (!requirementsMet(context)) {
+            // do some stuff for failing it or not I dunno tbh yet
+        }
+        else {
+            execute(context);
+        }
     }
-
-
 
 }

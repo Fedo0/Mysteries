@@ -1,6 +1,5 @@
-package net.fedoo0.mysteries.beyonder.pathways.main.death.abilities;
+package net.fedoo0.mysteries.beyonder.pathway.main.death.abilities;
 
-import net.fedoo0.mysteries.beyonder.abilities.AbilityContext;
 import net.fedoo0.mysteries.beyonder.abilities.AbilityRegistry;
 import net.fedoo0.mysteries.beyonder.abilities.PassiveAbility;
 import net.minecraft.resources.ResourceLocation;
